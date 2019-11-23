@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/style.css">
+        <title>GRADIENT()</title>
+        <style>
+            @keyframes linear-top{
+                0%{
+                    transform: rotate(25deg);
+                }
+                40%{
+                    transform: rotate(0deg);
+                }
+                100%{
+                    transform: rotate(25deg);
+                }
+            }
+            @keyframes linear-bottom{
+                0%{
+                    transform: rotate(145deg);
+                }
+                40%{
+                    transform: rotate(180deg);
+                }
+                100%{
+                    transform: rotate(145deg);
+                }
+            }
+            @keyframes conic{
+                0%{
+                    transform: rotate(0deg);
+                }
+                100%{
+                    transform: rotate(360deg);
+                }
+            }
+            .wrap{display: flex;justify-content: space-between;}
+            .circle{width: 250px;height: 250px;border-radius: 100%;overflow: hidden;}
+            .linear{background-image: linear-gradient(to left, #ff0, #0ff);position: relative;}
+            .linear.is-checked{background-image: none;}
+            .linear.is-checked:before, .linear.is-checked:after{content: '';background-image: linear-gradient(0deg, #ff0 50%, transparent 50.1%);position: absolute;width: 100%;height: 100%;left: 0;top: 0;}
+            .linear.is-checked:before{transform: rotate(25deg);}
+            .linear.is-checked:after{transform: rotate(145deg);}
+            .linear.is-checked:hover:before{animation: linear-top 1s infinite;}
+            .linear.is-checked:hover:after{animation: linear-bottom 1s infinite;}
+            .radial{background-image: radial-gradient(#ff0, #0ff);}
+            .radial.is-checked{background-image: radial-gradient(#000 1%, #000 1.5%, #fff 2%, #fff 3%, #fff 14.5%, #000 15.5%, #000 29.5%, #fff 30.5%, #fff 44.5%, #000 46.5%, #000 59%, #fff 61%, #fff 75%);}
+            .conic{background-image: conic-gradient(#ff0, #0ff);}
+            .conic.is-checked{background-image: radial-gradient(at center, #fcc6d5 50%, transparent 50.5%), conic-gradient(#f02f88, #fff);background-repeat: no-repeat;background-position: center;}
+            .conic.is-checked:hover{animation: conic 1s infinite;}
+            .is-checked:hover input{display: none;}
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <label class="circle linear">
+                <input type="checkbox" name="" id="">
+            </label>
+            <label class="circle radial">
+                <input type="checkbox" name="" id="">
+            </label>
+            <label class="circle conic">
+                <input type="checkbox" name="" id="">
+            </label>
+        </div>
+        <script>
+            document.querySelectorAll('input').forEach((input) => input.addEventListener('change', e => e.target.checked ? e.target.parentNode.classList.add('is-checked') :  e.target.parentNode.classList.remove('is-checked')))
+        </script>
+    </body>
+</html>

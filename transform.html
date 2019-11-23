@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/style.css">
+        <title>TRANSFORM()</title>
+        <style>
+            .wrap{display: flex;}
+            .controls{width: 200px;}
+            input{width: 100%;}
+            [pseudo-after]:after{
+                content: ' ('attr(pseudo-after)') ';
+            }
+            .view{position: relative;flex: 1;}
+            #circle{width: 300px;height: 300px;background-image: linear-gradient(rgb(201, 7, 127), rgb(9, 101, 187));border-radius: 32px;position: absolute;left: 50%;top: 50%;margin: -150px 0 0 -150px;}
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="controls">
+                <label for="rotate" pseudo-after="0deg">Rotate</label>
+                <input type="range" data-type="rotate" data-symbol="deg" value="0" max="360">
+                <label for="skew" pseudo-after="0deg">SkewX</label>
+                <input type="range" data-type="skew" data-symbol="deg" value="0" max="360">
+                <label for="scale" pseudo-after="1">Scale</label>
+                <input type="range" data-type="scale" data-symbol="" step="0.2" value="1" min="0" max="2">
+                <label for="translate" pseudo-after="0px">TranslateX</label>
+                <input type="range" data-type="translate" data-symbol="px" min="-500" value="0" max="500">
+            </div>
+            <div class="view">
+                <div id="circle"></div>
+            </div>
+        </div>
+        <script>
+            const inputs = document.querySelectorAll('input');
+            
+            inputs.forEach((input) => {
+                input.addEventListener('input', (e) => {
+                    const transformTypes = [];
+                    inputs.forEach((inputUnique) => {
+                        const target = inputUnique;
+                        const { type, symbol } = target.dataset;
+                        const { value } = target;
+                        transformTypes.push(`${type}(${value}${symbol || ''})`);
+                        target.previousElementSibling.setAttribute('pseudo-after', `${value}${symbol || ''}`);
+                    });
+                    circle.style.transform = transformTypes.join(' ');
+                });
+            });
+        </script>
+    </body>
+</html>

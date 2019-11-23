@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/style.css">
+        <title>CALC()</title>
+        <style>
+            #calc{width: calc(100% - 16px);}
+            #box{transform: translateX(-50%);position: relative;left: 50%;background-color: #ffffff;padding: 24px 0;text-align: center;border-radius: 4px;}
+        </style>
+    </head>
+    <body>
+        <input type="text" id="calc" placeholder="Coloque seu calculo aqui">
+        <div id="box"></div>
+        <script>
+            calc.addEventListener('input', (e) => {
+                box.style.width = `calc(${e.target.value})`;
+                box.textContent = `${box.clientWidth}px`;
+            });
+        </script>
+    </body>
+</html>

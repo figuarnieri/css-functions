@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>ATTR()</title>
+    <style>
+        a{
+            color: #222;
+        }
+        [pseudo-before]:before{
+            content: attr(pseudo-before);
+            margin-right: 8px;
+        }
+        [pseudo-after]:after{
+            content: attr(pseudo-after);
+            margin-left: 8px;
+        }
+        @media print {
+            [href]:after{
+                content: ' ('attr(href)')';
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li pseudo-before="Icon">Exemplo de pseudo-before</li>
+        <li pseudo-after="Icon">Exemplo de pseudo-after</li>
+        <li><a id="link" href="https://www.meetup.com/">Veja o site do Meetup</a></li>
+    </ul>
+    <script>
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.print();
+        });
+    </script>
+</body>
+</html>

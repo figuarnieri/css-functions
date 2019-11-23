@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="css/style.css">
+        <title>FILTERS()</title>
+        <style>
+            #video{width: 98%;border-radius: 16px;margin: 16px auto 0;display: block;}
+            h1{font-size: 24px;}
+            p{font-size: 18px;}
+            .img{position: relative;}
+            .backdrop{position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);padding: 64px;background-color: rgba(255, 255, 255, 0.4);border-radius: 8px;z-index: 2;}
+        </style>
+    </head>
+    <body>
+        <select id="filters">
+            <option value="">Selecione um filtro</option>
+            <option value="blur(10px)">Blur</option>
+            <option value="brightness(150%)">Brightness</option>
+            <option value="contrast(0.8)">Contrast</option>
+            <option value="grayscale(1)">Grayscale</option>
+            <option value="invert(100%)">Invert</option>
+            <option value="saturate(150%)">Saturate</option>
+            <option value="sepia(100%)">Sepia</option>
+        </select>
+        <div class="img">
+            <div id="backdrop" class="backdrop">
+                <h1>Título da Mensagem</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam dolor deserunt enim laboriosam ipsum reprehenderit incidunt placeat illo, ipsa saepe?</p>
+            </div>
+            <video id="video" src="img/video.mp4" autoplay controls loop>
+                <source type="video/mp4">
+            </video>
+            <script>
+                filters.addEventListener('change', e => backdrop.style.backdropFilter = `${e.target.value}`);
+            </script>
+        </div>
+    </body>
+</html>

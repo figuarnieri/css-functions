@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>RGBA() HSLA()</title>
+    <style>
+        .circle{
+            width: 300px;
+            height: 300px;
+            margin: 16px auto;
+            border-radius: 100%;
+            background-color: rgb(0, 0, 0, 1);
+        }
+        .info{
+            display: inline-flex;
+            align-items: center;
+        }
+        .inputs{
+            display: flex;
+        }
+        .name{
+            margin-right: 8px;
+        }
+        .wrap{
+            text-align: center;
+        }
+        .label{
+            font-size: 14px;
+            max-width: 130px;
+        }
+        .input{
+            width: 94%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="info" data-type="rgba">
+            <div class="name">RGBA</div>
+            <div class="inputs">
+                <label class="label">
+                    RED
+                    <input class="input" type="number" data-index="0" step="15" min="0" max="255" value="0">
+                </label>
+                <label class="label">
+                    GREEN
+                    <input class="input" type="number" data-index="1" step="15" min="0" max="255" value="0">
+                </label>
+                <label class="label">
+                    BLUE
+                    <input class="input" type="number" data-index="2" step="15" min="0" max="255" value="0">
+                </label>
+                <label class="label">
+                    ALPHA
+                    <input class="input" type="number" data-index="3" step="0.2" min="0" max="1" value="1">
+                </label>
+            </div>
+        </div>
+        <div class="circle"></div>
+    </div>
+    <div class="wrap">
+        <div class="info" data-type="hsla">
+            <div class="name">HSLA</div>
+            <div class="inputs">
+                <label class="label">
+                    HUE
+                    <input class="input" type="number" data-index="0" step="10" min="0" max="360" value="0">
+                </label>
+                <label class="label">
+                    SATURATION
+                    <input class="input" type="number" data-index="1" step="10" min="0" max="100" data-suffix="%" value="100">
+                </label>
+                <label class="label">
+                    LUMINOSITY
+                    <input class="input" type="number" data-index="2" step="10" min="0" max="100" data-suffix="%" value="50">
+                </label>
+                <label class="label">
+                    ALPHA
+                    <input class="input" type="number" data-index="3" step="0.2" min="0" max="1" value="1">
+                </label>
+            </div>
+        </div>
+        <div class="circle"></div>
+    </div>
+    <script>
+        const getItem = (item, i, value) => `${item.querySelector(`[data-index="${i}"]`).value || (value || 0)}${item.querySelector(`[data-index="${i}"]`).dataset.suffix || ''}`;
+        document.querySelectorAll('.input').forEach((input) => {
+            input.addEventListener('input', (e) => {
+                const info = input.closest('.info');
+                const { type } = info.dataset;
+                const i0 = getItem(info, 0);
+                const i1 = getItem(info, 1);
+                const i2 = getItem(info, 2);
+                const i3 = getItem(info, 3, 1);
+                const { nextElementSibling: circle } = info;
+                circle.style.backgroundColor = `${type}(${i0}, ${i1}, ${i2}, ${i3})`;
+            })
+        })
+    </script>
+</body>
+</html>
