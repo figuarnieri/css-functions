@@ -1,2 +1,2 @@
-# css-functions
+# CSS FUNctions()
 Exemplos de CSS Functions ♥
